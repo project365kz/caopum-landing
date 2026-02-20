@@ -37,6 +37,7 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
+  overflow-x: hidden;
 }
 
 body {
@@ -93,37 +94,34 @@ body {
   50% { transform: translate(20px, 30px) scale(1.08); }
 }
 
-.hero-blob-1 { animation: float1 20s ease-in-out infinite; }
-.hero-blob-2 { animation: float2 25s ease-in-out infinite; }
-.hero-blob-3 { animation: float3 18s ease-in-out infinite; }
+.hero-blob-1 { animation: float1 20s ease-in-out infinite; will-change: transform; }
+.hero-blob-2 { animation: float2 25s ease-in-out infinite; will-change: transform; }
+.hero-blob-3 { animation: float3 18s ease-in-out infinite; will-change: transform; }
+
+/* iOS Safari: отключаем тяжёлые блобы на слабых устройствах */
+@media (max-width: 640px) {
+  .hero-blob-1, .hero-blob-2, .hero-blob-3 {
+    animation: none;
+  }
+}
 
 /* Стеклянный эффект карточек */
 .glass-card {
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+}
+
+/* backdrop-filter только на десктопе — iOS Safari глючит */
+@media (min-width: 641px) {
+  .glass-card {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
 }
 
 .glass-card:hover {
   background: rgba(255, 255, 255, 0.12);
   border-color: rgba(255, 255, 255, 0.2);
-}
-
-/* Пульсация CTA */
-@keyframes pulse-ring {
-  0% { transform: scale(1); opacity: 0.5; }
-  100% { transform: scale(1.4); opacity: 0; }
-}
-
-.cta-pulse::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: inherit;
-  animation: pulse-ring 2s ease-out infinite;
-  z-index: -1;
 }
 
 /* Анимация скролл-подсказки */
@@ -191,11 +189,3 @@ body {
   animation: overlayIn 0.2s ease;
 }
 
-/* Сетка для hero-статистики — анимация чисел */
-@keyframes countUp {
-  from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.stat-animate {
-  animation: countUp 0.6s ease forwards;
-}

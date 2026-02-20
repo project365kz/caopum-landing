@@ -283,14 +283,14 @@ function Header({ onCtaClick, scrolled, activeSection }) {
 /* --- Hero --- */
 function Hero({ onCtaClick }) {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
+    <section className="relative min-h-[100dvh] flex items-center overflow-hidden">
       {/* Градиентный фон */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary-900 via-primary-800 to-primary-700" />
 
-      {/* Анимированные блобы */}
-      <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-accent-500/8 rounded-full blur-3xl hero-blob-1" />
-      <div className="absolute bottom-[-15%] left-[-10%] w-[600px] h-[600px] bg-primary-400/10 rounded-full blur-3xl hero-blob-2" />
-      <div className="absolute top-[40%] left-[60%] w-[300px] h-[300px] bg-accent-400/5 rounded-full blur-3xl hero-blob-3" />
+      {/* Анимированные блобы — уменьшен blur на мобильных для iOS Safari */}
+      <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-accent-500/8 rounded-full blur-2xl sm:blur-3xl hero-blob-1" />
+      <div className="absolute bottom-[-15%] left-[-10%] w-[600px] h-[600px] bg-primary-400/10 rounded-full blur-2xl sm:blur-3xl hero-blob-2" />
+      <div className="absolute top-[40%] left-[60%] w-[300px] h-[300px] bg-accent-400/5 rounded-full blur-2xl sm:blur-3xl hero-blob-3" />
 
       {/* Паттерн */}
       <div className="absolute inset-0 opacity-[0.04]"
@@ -298,7 +298,7 @@ function Hero({ onCtaClick }) {
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16 sm:py-32 md:py-36 text-center w-full">
         {/* Бейдж */}
-        <div className="inline-flex items-center gap-2 bg-white/8 border border-white/15 rounded-full px-4 py-2 sm:px-5 sm:py-2.5 mb-6 sm:mb-8 backdrop-blur-sm reveal">
+        <div className="inline-flex items-center gap-2 bg-white/10 border border-white/15 rounded-full px-4 py-2 sm:px-5 sm:py-2.5 mb-6 sm:mb-8 sm:backdrop-blur-sm reveal">
           <span className="w-2 h-2 bg-accent-400 rounded-full animate-pulse" />
           <span className="text-white/70 text-xs sm:text-sm font-medium">Профессиональное отраслевое объединение</span>
         </div>
